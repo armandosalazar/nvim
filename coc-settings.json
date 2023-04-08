@@ -1,0 +1,9 @@
+{
+	"suggest.enablePreselect": true,
+	"languageserver": {
+		"digestif": {
+			"command": "/home/armando/.local/bin/digestif",
+			"filetypes": ["tex"]
+		}
+	}
+}
