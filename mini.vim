@@ -1,12 +1,19 @@
-lua require('init')
+set nocompatible
+filetype off    
+set hidden
 
-" NOTE: configs for me
-set nu
-set tabstop=4
-set shiftwidth=4
-set wrap!
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'neoclide/coc.nvim'
 
-" NOTE: configure tabs
+call vundle#end()        
+filetype plugin indent on
+syntax on
+
+let g:coc_global_extensions = ['coc-clangd']
+
 " Use tab for trigger completion with characters ahead and navigate.
 inoremap <silent><expr> <TAB>
       \ pumvisible() ? "\<C-n>" :
@@ -25,3 +32,4 @@ if has('nvim')
 else
   inoremap <silent><expr> <c-@> coc#refresh()
 endif
+
