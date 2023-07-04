@@ -48,7 +48,7 @@ end)
 -- lualine
 require('lualine').setup()
 -- indent guides
--- vim.opt.list = true
+vim.opt.list = true
 vim.opt.listchars:append "space:⋅"
 vim.opt.listchars:append "eol:↴"
 require('indent_blankline').setup {
@@ -66,5 +66,11 @@ require('onedark').setup {
 require("flutter-tools").setup {
 	settings = {
 		enableSnippets = true,
+	}
+}
+-- treesitter
+require'nvim-treesitter.configs'.setup {
+	highlight = {
+		enable = true,
 	}
 }
