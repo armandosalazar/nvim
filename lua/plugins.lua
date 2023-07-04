@@ -3,13 +3,21 @@
 -- vim.cmd[[colorscheme everforest]]
 -- vim.cmd[[colorscheme edge]]
 -- vim.cmd[[colorscheme gruvbox-material]]
-vim.cmd[[colorscheme sonokai]]
--- vim.cmd[[colorscheme onedark]]
+-- vim.cmd[[colorscheme sonokai]]
+vim.cmd[[colorscheme onedark]]
 
 -- start with packer
 require('packer').startup(function(use)
 	-- packer
 	use 'wbthomason/packer.nvim' -- this is essential.
+	--flutter
+	use {
+		'akinsho/flutter-tools.nvim',
+		requires = {
+			'nvim-lua/plenary.nvim',
+			'stevearc/dressing.nvim', -- optional for vim.ui.select
+		},
+	}
 	-- theme
 	use 'folke/tokyonight.nvim'
 	use 'sainnhe/everforest'
@@ -53,4 +61,10 @@ require('indent_blankline').setup {
 require('barbar').setup()
 require('onedark').setup {
 	style = 'darker'
+}
+-- flutter
+require("flutter-tools").setup {
+	settings = {
+		enableSnippets = true,
+	}
 }
