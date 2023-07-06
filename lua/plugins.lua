@@ -8,6 +8,8 @@ vim.cmd[[colorscheme onedark]]
 
 -- start with packer
 require('packer').startup(function(use)
+	-- copilot
+	use 'github/copilot.vim'
 	-- packer
 	use 'wbthomason/packer.nvim' -- this is essential.
 	--flutter
