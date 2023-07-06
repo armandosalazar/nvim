@@ -39,16 +39,23 @@ require('packer').startup(function(use)
 		run = ':TSUpdate'
 	}
 	-- tabs
-	use 'nvim-tree/nvim-web-devicons'
-	use {'romgrk/barbar.nvim', requires = 'nvim-web-devicons'}
+	use {'akinsho/bufferline.nvim', tag = "*", requires = 'nvim-tree/nvim-web-devicons'}
+	-- use 'nvim-tree/nvim-web-devicons'
+	-- use {'romgrk/barbar.nvim', requires = 'nvim-web-devicons'}
 	-- coc
 	use {'neoclide/coc.nvim', branch = 'release'}
+	use {
+  'nvim-tree/nvim-tree.lua',
+  requires = {
+    'nvim-tree/nvim-web-devicons', -- optional
+  },
+}
 end)
 
 -- lualine
 require('lualine').setup()
 -- indent guides
-vim.opt.list = true
+-- vim.opt.list = true
 vim.opt.listchars:append "space:⋅"
 vim.opt.listchars:append "eol:↴"
 require('indent_blankline').setup {
@@ -58,7 +65,7 @@ require('indent_blankline').setup {
 	space_char_blankline = " ",
 }
 -- tabs
-require('barbar').setup()
+-- require('barbar').setup()
 require('onedark').setup {
 	style = 'darker'
 }
@@ -69,8 +76,10 @@ require("flutter-tools").setup {
 	}
 }
 -- treesitter
-require'nvim-treesitter.configs'.setup {
-	highlight = {
-		enable = true,
-	}
-}
+-- require'nvim-treesitter.configs'.setup {
+--	highlight = {
+--		enable = true,
+--	}
+-- }
+-- require("bufferline").setup{}
+-- empty setup using defaults
