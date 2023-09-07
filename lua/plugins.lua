@@ -1,63 +1,81 @@
--- vim settings
--- vim.cmd[[colorscheme tokyonight-night]]
--- vim.cmd[[colorscheme everforest]]
--- vim.cmd[[colorscheme edge]]
--- vim.cmd[[colorscheme gruvbox-material]]
--- vim.cmd[[colorscheme sonokai]]
-vim.cmd[[colorscheme onedark]]
 
 -- start with packer
 require('packer').startup(function(use)
-	-- copilot
+	-- Packer
+	use 'wbthomason/packer.nvim'
+	-- Copilot
 	use 'github/copilot.vim'
-	-- packer
-	use 'wbthomason/packer.nvim' -- this is essential.
-	--flutter
+	-- Coc
+	use {'neoclide/coc.nvim', branch = 'release'}
+	-- Web devicons
+	use 'nvim-tree/nvim-web-devicons'
+	-- Theme
 	use {
-		'akinsho/flutter-tools.nvim',
-		requires = {
-			'nvim-lua/plenary.nvim',
-			'stevearc/dressing.nvim', -- optional for vim.ui.select
-		},
+		'morhetz/gruvbox',
+		config = function()
+			vim.cmd[[colorscheme gruvbox]]
+		end
 	}
-	-- theme
-	use 'folke/tokyonight.nvim'
-	use 'sainnhe/everforest'
-	use 'sainnhe/edge'
-	use 'sainnhe/gruvbox-material'
-	use 'sainnhe/sonokai'
-	-- Using Packer
-	use 'navarasu/onedark.nvim'
-	-- lualine
+	use {
+		'tiagovla/tokyodark.nvim',
+	}
+	-- Lualine
 	use {
 		'nvim-lualine/lualine.nvim',
 		requires = { 'nvim-tree/nvim-web-devicons', opt = true }
 	}
-	-- indent guides
+	-- Indent guides
 	use 'lukas-reineke/indent-blankline.nvim'
-	-- treesitter (syntax hightlihter)
+	-- Treesitter
 	use {
 		'nvim-treesitter/nvim-treesitter',
 		run = ':TSUpdate'
 	}
-	-- tabs
+	-- Tabs bufferline
 	use {'akinsho/bufferline.nvim', tag = "*", requires = 'nvim-tree/nvim-web-devicons'}
-	-- use 'nvim-tree/nvim-web-devicons'
-	-- use {'romgrk/barbar.nvim', requires = 'nvim-web-devicons'}
-	-- coc
-	use {'neoclide/coc.nvim', branch = 'release'}
+	-- Nvim Tree (file explorer)
 	use {
-  'nvim-tree/nvim-tree.lua',
-  requires = {
-    'nvim-tree/nvim-web-devicons', -- optional
-  },
-}
+		'nvim-tree/nvim-tree.lua',
+		requires = {
+			'nvim-tree/nvim-web-devicons', -- optional
+		},
+	}
 end)
 
+-- treesitter
+require('nvim-treesitter.configs').setup {
+	highlight = {
+		enable = true,
+	},
+	indent = {
+		enable = true,
+	},
+}
+local function os_icon()
+	local os = vim.loop.os_uname().sysname
+	if os == 'Linux' then
+		return ''
+	elseif os == 'Darwin' then
+		return ''
+	elseif os == 'Windows' then
+		return ''
+	else
+		return os
+	end
+end
 -- lualine
-require('lualine').setup()
+require('lualine').setup{
+	sections = {
+		lualine_x = {
+			'encoding',
+			-- 'fileformat',
+			os_icon,
+			'filetype',
+		}
+	}
+}
 -- indent guides
--- vim.opt.list = true
+vim.opt.list = true
 vim.opt.listchars:append "space:⋅"
 vim.opt.listchars:append "eol:↴"
 require('indent_blankline').setup {
@@ -66,22 +84,11 @@ require('indent_blankline').setup {
 	show_end_of_line = true,
 	space_char_blankline = " ",
 }
+vim.opt.termguicolors = true
 -- tabs
--- require('barbar').setup()
-require('onedark').setup {
-	style = 'darker'
-}
--- flutter
-require("flutter-tools").setup {
-	settings = {
-		enableSnippets = true,
-	}
-}
--- treesitter
--- require'nvim-treesitter.configs'.setup {
---	highlight = {
---		enable = true,
---	}
--- }
--- require("bufferline").setup{}
--- empty setup using defaults
+require('bufferline').setup{} -- alternative to barbar
+-- nvim-tree
+require('nvim-tree').setup();
+-- tokyodark
+vim.cmd[[colorscheme tokyodark]]
+-- vim.cmd[[colorscheme gruvbox]]
