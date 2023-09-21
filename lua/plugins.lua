@@ -1,4 +1,3 @@
-
 -- start with packer
 require('packer').startup(function(use)
 	-- Packer
@@ -75,7 +74,7 @@ require('lualine').setup{
 	}
 }
 -- indent guides
-vim.opt.list = true
+-- vim.opt.list = true
 vim.opt.listchars:append "space:⋅"
 vim.opt.listchars:append "eol:↴"
 require('indent_blankline').setup {
@@ -92,3 +91,5 @@ require('nvim-tree').setup();
 -- tokyodark
 vim.cmd[[colorscheme tokyodark]]
 -- vim.cmd[[colorscheme gruvbox]]
+-- vim.cmd[[colorscheme habamax]]
+vim.cmd[[set background=dark]]
